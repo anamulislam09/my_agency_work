@@ -16,10 +16,15 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->is_admin==1){
-            return $next($request);
-        }else{
-            return redirect()->route('home');
-        }
+        // if (!$request->expectsJson()) {
+        //     // return route('admin.login');
+        //     return redirect()->route('admin.login');
+        // } else {
+            if (auth()->user()->is_admin == 1) {
+                return $next($request);
+            } else {
+                return redirect()->route('home');
+            }
+        // }
     }
 }
