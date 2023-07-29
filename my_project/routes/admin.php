@@ -19,6 +19,9 @@ Route::middleware('is_admin')->group(function () {
         Route::get('/', [CategoryController::class,'index'])->name('category.index');
         Route::get('/create', [CategoryController::class,'create'])->name('category.create');
         Route::post('/store', [CategoryController::class,'store'])->name('store.category');
+        Route::get('/delete/{id}', [CategoryController::class,'destroy'])->name('category.delete');
+        Route::get('/edit/{id}', [CategoryController::class,'edit']);
+        Route::post('/update', [CategoryController::class,'update'])->name('update.category');
     });
 
     // Service sub category route
@@ -26,6 +29,7 @@ Route::middleware('is_admin')->group(function () {
         Route::get('/', [SubCategoryController::class,'index'])->name('subcategory.index');
         Route::get('/create', [SubCategoryController::class,'create'])->name('subcategory.create');
         Route::post('/store', [SubCategoryController::class,'store'])->name('store.subcategory');
+        Route::post('/delete/{id}', [SubCategoryController::class,'destroy'])->name('destroy.subcategory');
     });
 
     // Designation route

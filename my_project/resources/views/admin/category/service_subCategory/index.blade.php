@@ -41,7 +41,7 @@
                                 <td>{{ $data->subcategory_name }}</td>
                                 <td>
                                     <a href="" class="btn btn-sm btn-info">edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">delete</a>
+                                    <a href="{{route('destroy.subcategory', $data->id )}}" class="btn btn-sm btn-danger">delete</a>
                                 </td>
                             </tr>
                         @endforeach

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubCategoryController extends Controller
 {
@@ -16,8 +17,10 @@ class SubCategoryController extends Controller
     }
 
     // show subcategory
-    public function index()
-    {
+    public function index(){
+    // using querybuilder 
+        $data = DB::table('sub_categories')->leftJoin('categories','sub_categories.category_id','categories.id')->select('sub_categories.*','categories.category_name');
+
         $datas = SubCategory::all();
         return view('admin.category.service_subcategory.index', compact('datas'));
     }
@@ -47,5 +50,12 @@ class SubCategoryController extends Controller
         ]);
         // Category::where('id', $category_id)->increment('subcategory_count', 1);
         return redirect()->route('subcategory.index')->with('msg', 'Sub Category Added successfully');
+    }
+
+    // selete method 
+    public function destroy($id){
+        $data = SubCategory::findOrFail($id);
+        $data->delete();
+        return redirect()->route('subcategory.index')->with('msg', 'Sub Category deleted successfully');
     }
 }

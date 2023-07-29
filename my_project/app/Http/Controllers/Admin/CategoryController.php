@@ -18,7 +18,7 @@ class CategoryController extends Controller
     // Show Service category
     public function index()
     {
-        $datas = Category::get();
+        $datas = Category::paginate(3);
         return view('admin.category.service_category.index', compact('datas'));
         // echo "Hello";
     }
@@ -47,6 +47,51 @@ class CategoryController extends Controller
             'category_name' => $request->category_name,
             'category_slug' => Str::slug($request->category_name, '-'),
         ]);
-        return redirect()->route('service.index');
+        return redirect()->route('category.index');
+    }
+
+    // category edit method 
+    public function edit($id)
+    {
+        // using query builder 
+        // $data = DB::table('categories')->where('id', $id)->first();
+
+        // using eloquent orm 
+        $data = Category::findOrFail($id);
+        return response()->json($data);
+    }
+    // category edit method 
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            'category_name' => 'required|unique:categories|max:255',
+        ]);
+        $id = $request->id;
+        // using queryBuilder 
+        // $data = array();
+        // $data['category_name'] = $request->category_name;
+        // $data['category_slug'] = Str::slug($request->category_name, '-');
+        // DB::table('categories')->where("id", $id)->update($data);
+
+        // Using Querybuilder 
+        $data = Category::findOrFail($id);
+        $data->update([
+            'category_name' => $request->category_name,
+            'category_slug' => Str::slug($request->category_name, '-'),
+        ]);
+        return redirect()->route('category.index');
+    }
+
+
+    public function destroy($id)
+    {
+        // using query builder 
+        // DB::table('categories')->where('id', $id)->delete();
+        // Using Eloquent Orm 
+
+        // Using querybuilder 
+        $data = Category::findOrFail($id);
+        $data->delete();
+        return redirect()->route('category.index');
     }
 }
