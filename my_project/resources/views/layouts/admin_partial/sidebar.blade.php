@@ -40,7 +40,7 @@
 
                 {{-- our team start here --}}
                 <li class="nav-item">
-                    <a href="" class="nav-link ">
+                    <a href="{{ route('member.index') }}" class="nav-link ">
                         <i class="fa fa-users" aria-hidden="true"></i>
                         <p class="pl-2">Team Members</p>
                     </a>
@@ -78,7 +78,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{ route('service.index') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Service</p>
                             </a>

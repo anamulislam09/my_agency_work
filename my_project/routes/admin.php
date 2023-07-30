@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DesignationContgroller;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\serviceController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +31,19 @@ Route::middleware('is_admin')->group(function () {
         Route::get('/', [SubCategoryController::class,'index'])->name('subcategory.index');
         Route::get('/create', [SubCategoryController::class,'create'])->name('subcategory.create');
         Route::post('/store', [SubCategoryController::class,'store'])->name('store.subcategory');
-        Route::post('/delete/{id}', [SubCategoryController::class,'destroy'])->name('destroy.subcategory');
+        Route::get('/delete/{id}', [SubCategoryController::class,'destroy'])->name('destroy.subcategory');
         Route::get('/edit/{id}', [SubCategoryController::class,'edit']);
         Route::post('/update', [SubCategoryController::class,'update'])->name('update.subcategory');
+    });
+
+       // Services route
+       Route::group(['prefix'=>'service'], function(){
+        Route::get('/', [serviceController::class,'index'])->name('service.index');
+        Route::get('/create', [serviceController::class,'create'])->name('service.create');
+        Route::post('/store', [serviceController::class,'store'])->name('store.service');
+        Route::post('/delete/{id}', [serviceController::class,'destroy'])->name('destroy.service');
+        Route::get('/edit/{id}', [serviceController::class,'edit']);
+        Route::post('/update', [serviceController::class,'update'])->name('update.service');
     });
 
     // Designation route
@@ -46,15 +58,15 @@ Route::middleware('is_admin')->group(function () {
 
     // team member route
     Route::group(['prefix'=>'team-members'], function(){
-        Route::get('/', [DesignationContgroller::class,'index'])->name('designation.index');
-        // Route::get('/create', [DesignationContgroller::class,'create'])->name('designation.create');
-        // Route::post('/store', [DesignationContgroller::class,'store'])->name('store.designation');
-        // Route::get('/delete/{id}', [DesignationContgroller::class,'destroy'])->name('designation.destroy');
-        // Route::get('/edit/{id}', [DesignationContgroller::class,'edit']);
-        // Route::post('/update', [DesignationContgroller::class,'update'])->name('designation.update');
+        Route::get('/', [MemberController::class,'index'])->name('member.index');
+        Route::get('/create', [MemberController::class,'create'])->name('member.create');
+        Route::post('/store', [MemberController::class,'store'])->name('store.member');
+        Route::get('/delete/{id}', [MemberController::class,'destroy'])->name('member.destroy');
+        Route::get('/edit/{id}', [MemberController::class,'edit']);
+        Route::post('/update', [MemberController::class,'update'])->name('member.update');
     });
 
 
-    
+
 
 });
