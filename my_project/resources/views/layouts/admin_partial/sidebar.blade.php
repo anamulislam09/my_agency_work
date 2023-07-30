@@ -28,11 +28,10 @@
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
-
                 </li>
                 {{-- Designation start here --}}
                 <li class="nav-item">
-                    <a href="" class="nav-link ">
+                    <a href="{{route('designation.index')}}" class="nav-link ">
                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                         <p class="pl-2">Designations</p>
                     </a>
@@ -43,7 +42,7 @@
                 <li class="nav-item">
                     <a href="" class="nav-link ">
                         <i class="fa fa-users" aria-hidden="true"></i>
-                        <p class="pl-2">Teams</p>
+                        <p class="pl-2">Team Members</p>
                     </a>
                 </li>
                 {{-- our team ends here --}}

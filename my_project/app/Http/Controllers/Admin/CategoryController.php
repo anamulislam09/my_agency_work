@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $data = Category::findOrFail($id);
         return response()->json($data);
     }
-    // category edit method 
+    // category update method 
     public function update(Request $request)
     {
         $validated = $request->validate([
