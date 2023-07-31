@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subcategory_id');
             $table->string('service_name');
+            $table->string('service_slug')->nullable();
             $table->string('service_details');
             $table->string('service_img');
             $table->timestamps();

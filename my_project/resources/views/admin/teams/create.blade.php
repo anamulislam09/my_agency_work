@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">member</h1>
+                        <h1 class="m-0">Team Member</h1>
                     </div>
                 </div>
             </div>
@@ -53,10 +53,17 @@
                     @enderror
 
                     <div class="mb-3 mb-3">
+                        <label for="self_info" class="form-label">self_info :</label>
+                        <textarea name="self_info" id="self_info" class="form-control @error('address') is-invalid @enderror" cols="" rows="" placeholder="Tell something about yourself"></textarea>
+
+                    </div>
+                    @error('address')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="mb-3 mb-3">
                         <label for="address" class="form-label">Address:</label>
-
                         <textarea class="form-control @error('address') is-invalid @enderror" id="" cols="" rows=""  name="address" id="address" placeholder="Enter recent address"></textarea>
-
                     </div>
                     @error('address')
                         <div class="alert alert-danger">{{ $message }}</div>

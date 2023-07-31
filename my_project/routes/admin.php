@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\DesignationContgroller;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\serviceController;
@@ -41,7 +42,7 @@ Route::middleware('is_admin')->group(function () {
         Route::get('/', [serviceController::class,'index'])->name('service.index');
         Route::get('/create', [serviceController::class,'create'])->name('service.create');
         Route::post('/store', [serviceController::class,'store'])->name('store.service');
-        Route::post('/delete/{id}', [serviceController::class,'destroy'])->name('destroy.service');
+        Route::get('/delete/{id}', [serviceController::class,'destroy'])->name('service.destroy');
         Route::get('/edit/{id}', [serviceController::class,'edit']);
         Route::post('/update', [serviceController::class,'update'])->name('update.service');
     });
@@ -64,6 +65,12 @@ Route::middleware('is_admin')->group(function () {
         Route::get('/delete/{id}', [MemberController::class,'destroy'])->name('member.destroy');
         Route::get('/edit/{id}', [MemberController::class,'edit']);
         Route::post('/update', [MemberController::class,'update'])->name('member.update');
+    });
+
+    // Client route
+    Route::group(['prefix'=>'our-client'], function(){
+        Route::get('/', [ClientController::class,'index'])->name('client.index');
+
     });
 
 

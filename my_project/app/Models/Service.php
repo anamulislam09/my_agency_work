@@ -13,6 +13,7 @@ class Service extends Model
         'category_id',
         'subcategory_id',
         'service_name',
+        'service_slug',
         'service_details',
         'service_img',
     ];

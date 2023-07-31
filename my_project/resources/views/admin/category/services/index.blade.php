@@ -28,6 +28,8 @@
                         <tr>
                             <th style="width: 10px">Sl</th>
                             <th>Service Name</th>
+                            <th>Category </th>
+                            <th>SubCategory </th>
                             <th>Service Details</th>
                             <th>Image</th>
 
@@ -39,11 +41,13 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $data->service_name }}</td>
+                                <td>{{ $data->category_name }}</td>
+                                <td>{{ $data->subcategory_name }}</td>
                                 <td>{{ $data->service_details }}</td>
-                                <td><img style="width: 70px; height:70px" src="{{ asset($data->image) }}" alt="">
+                                <td><img style="width: 70px; height:70px" src="{{ asset($data->service_img) }}" alt="">
                                 <td>
                                     <a href="" class="btn btn-sm btn-info edit" data-id="{{ $data->id }}"
-                                        data-toggle="modal" data-target="#editteamModel">edit</a>
+                                        data-toggle="modal" data-target="#editServiceModel">edit</a>
                                     <a href="{{ route('service.destroy', $data->id) }}"
                                         class="btn btn-sm btn-danger">delete</a>
                                 </td>
@@ -69,58 +73,46 @@
 
     {{-- category edit model --}}
     <!-- Modal -->
-    <div class="modal fade" id="editteamModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editServiceModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit team Member </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Service </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('service.update') }}" method="POST">
+                    <form action="{{ route('update.service') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="id" id="e_teamMember_id">
+                        <input type="hidden" name="id" id="e_service_id">
                         <div class="card-body">
                             <div class="mb-3 mb-3">
-                                <label for="name" class="form-label">Full Name:</label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                    value="{{ old('name') }}" name="name" id="e_name" placeholder="Enter Name">
+                                <label for="service_name" class="form-label">Service Name:</label>
+                                <input type="text" class="form-control @error('service_name') is-invalid @enderror"
+                                    value="{{ old('service_name') }}" name="service_name" id="e_service_name" placeholder="Enter Name">
                             </div>
-                            @error('name')
+                            @error('service_name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
 
-                            <div class="mb-3 mb-3">
-                                <label for="email" class="form-label">Email:</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                    value="{{ old('email') }}" name="email" id="e_email" placeholder="Enter Email">
+                            <div class="mb-3">
+                                <label for="service_details" class="form-label">Service Details:</label>
+                                <textarea name="service_details" id="e_service_details"  class="form-control @error('service_details') is-invalid @enderror"  cols="" rows="" >{{ old('service_details') }}</textarea>
                             </div>
-                            @error('email')
+                            @error('service_details')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
 
-                            <div class="mb-3 mb-3">
-                                <label for="phone" class="form-label">Phone :</label>
-                                <input type="text" class="form-control @error('phone') is-invalid @enderror"
-                                    value="{{ old('phone') }}" name="phone" id="e_phone" placeholder="Enter Phone">
+                            <div class="mb-3">
+                                <label for="service_img" class="form-label">Service Image:</label>
+                                <input type="file" class="form-control @error('service_img') is-invalid @enderror"
+                                    value="{{ old('service_img') }}" name="service_img" id="e_service_img">
                             </div>
-                            @error('phone')
+                            @error('service_img')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-
-                            <div class="mb-3 mb-3">
-                                <label for="address" class="form-label">Address:</label>
-                                <input type="text" class="form-control @error('address') is-invalid @enderror"
-                                    value="{{ old('address') }}" name="address" id="e_address"
-                                    placeholder="Enter address">
-                            </div>
-                            @error('address')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-
                         </div>
                 </div>
                 <div class="modal-footer">
@@ -138,13 +130,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $('body').on('click', '.edit', function() {
-            let member_id = $(this).data('id');
-            $.get("service/edit/" + member_id, function(data) {
-                $('#e_name').val(data.name);
-                $('#e_email').val(data.email);
-                $('#e_phone').val(data.phone);
-                $('#e_address').val(data.address);
-                $('#e_teamMember_id').val(data.id);
+            let service_id = $(this).data('id');
+            $.get("service/edit/" + service_id, function(data) {
+                $('#e_service_name').val(data.service_name);
+                $('#e_service_details').val(data.service_details);
+                $('#e_service_img').val(data.service_img);
+                $('#e_service_id').val(data.id);
             })
         })
     </script>

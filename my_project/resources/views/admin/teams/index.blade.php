@@ -30,7 +30,8 @@
                             <th>Name</th>
                             <th>Designation</th>
                             <th>Email</th>
-                            <th>phone</th>
+                            <th>Phone</th>
+                            <th>Self Talk</th>
                             <th>address</th>
                             <th>Image</th>
                             <th style="width: 150px">Action</th>
@@ -44,6 +45,7 @@
                                 <td>{{ $data->designation_name }}</td>
                                 <td>{{ $data->email }}</td>
                                 <td>{{ $data->phone }}</td>
+                                <td>{{ $data->self_info }}</td>
                                 <td>{{ $data->address }}</td>
                                 <td><img style="width: 70px; height:70px" src="{{ asset($data->image) }}" alt="">
                                 <td>
@@ -117,6 +119,15 @@
                             @enderror
 
                             <div class="mb-3 mb-3">
+                                <label for="self_info" class="form-label">self_info :</label>
+                                <textarea name="self_info" id="e_self_info" class="form-control @error('address') is-invalid @enderror" cols="" rows="">value="{{ old('address') }}"</textarea>
+
+                            </div>
+                            @error('address')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+
+                            <div class="mb-3 mb-3">
                                 <label for="address" class="form-label">Address:</label>
                                 <input type="text" class="form-control @error('address') is-invalid @enderror"
                                     value="{{ old('address') }}" name="address" id="e_address"
@@ -148,6 +159,7 @@
                 $('#e_name').val(data.name);
                 $('#e_email').val(data.email);
                 $('#e_phone').val(data.phone);
+                $('#e_self_info').val(data.self_info);
                 $('#e_address').val(data.address);
                 $('#e_teamMember_id').val(data.id);
             })

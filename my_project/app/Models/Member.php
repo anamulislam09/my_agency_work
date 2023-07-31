@@ -14,6 +14,7 @@ class Member extends Model
         'name',
         'email',
         'phone',
+        'self_info',
         'address',
         'image',
     ];

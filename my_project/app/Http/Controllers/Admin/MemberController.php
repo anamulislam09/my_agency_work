@@ -40,6 +40,7 @@ class MemberController extends Controller
             'name' => 'required',
             'email' => 'required|email|max:55|unique:members',
             'phone' => 'required ',
+            'self_info' => 'required ',
             'address' => 'required ',
             'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'designation_id' => 'required',
@@ -50,13 +51,13 @@ class MemberController extends Controller
         $image = $request->file('image');
         $img_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         $request->image->move(public_path('upload'), $img_name);
-
         $img_url = 'upload/' . $img_name;
 
         Member::insert([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'self_info' => $request->self_info,
             'address' => $request->address,
             'designation_id' => $request->designation_id,
             'image' => $img_url,
@@ -78,13 +79,14 @@ class MemberController extends Controller
      }
 
 
-      // store members
+      // update members
     public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|max:55',
             'phone' => 'required ',
+            'self_info' => 'required ',
             'address' => 'required ',
 
         ]);
@@ -96,6 +98,7 @@ class MemberController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'self_info' => $request->self_info,
             'address' => $request->address,
         ]);
         return redirect()->route('member.index')->with('msg', 'Member Edited successfully');

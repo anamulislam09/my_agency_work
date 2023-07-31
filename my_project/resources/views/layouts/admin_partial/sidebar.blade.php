@@ -48,7 +48,7 @@
                 {{-- our team ends here --}}
                 {{-- Clients start here --}}
                 <li class="nav-item">
-                    <a href="" class="nav-link ">
+                    <a href="{{ route('client.index') }}" class="nav-link ">
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                         <p class="pl-2">Our Client</p>
                     </a>
