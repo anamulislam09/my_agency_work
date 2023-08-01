@@ -346,7 +346,7 @@
   >ul {
     >li {
       margin: 0 13px;
-      
+
       >a {
         padding: 51.5px 0;
       }
@@ -360,7 +360,7 @@
     }
   }
 
-  
+
 }
 
 .header-text {
@@ -871,7 +871,7 @@
   .menu-area {
     background-color: $white-color;
     z-index: 1;
-    
+
     @media (min-width: $xl) {
       max-width: 1518px;
       margin: 0 auto;
@@ -927,7 +927,7 @@
     z-index: -1;
     clip-path: polygon(0 0, 100% 0, calc(100% - 80px) 99%, 80px 100%);
   }
-  
+
   .shape2 {
     position: absolute;
     border-bottom: 2px solid $white-color;

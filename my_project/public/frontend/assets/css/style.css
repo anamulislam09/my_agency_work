@@ -43,7 +43,7 @@ Version: 1.0.0
     4.6. Blog
     4.7. Comments
     4.8. Hero Area
-    4.9. Error    
+    4.9. Error
     4.10. Feature
     4.11. About
     4.12. Service
@@ -12146,3 +12146,58 @@ blockquote.vs-quote .quote-author {
   padding: 5px 0;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+/* customiza style */
+
+/* menubar start here */
+
+.header-logo {
+    padding-right: 100px;
+}
+
+.header-logo a img {
+    width: 80%;
+}
+
+.main-menu a {
+    font-size: 14px;
+}
+
+.header-info {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 20px;
+    padding-left: 20px;
+}
+
+.header-info_label {
+    font-size: 12px;
+}
+
+.header-info_link {
+    font-size: 16px;
+}
+
+.header-info_icon {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.main-menu ul.sub-menu a, .main-menu ul.mega-menu a {
+    font-size: 14px;
+    line-height: 30px;
+}
+
+/* dropdown menu start here */
+
+.main-menu ul.mega-menu {
+    width: 50%;
+}
+
+/* dropdown menu ends here */
+
+/* menubar ends here */
+
+
+
